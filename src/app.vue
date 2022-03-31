@@ -1,19 +1,24 @@
+
+
 <template>
-    <div>
-        {{n}}
-    </div>
+  <div>
+    App:vue {{ n }}
+    <hr />
+    Demo.vue : <Child  :money.sync='n' />
+  </div>
 </template>
 
 <script>
+import Child from "./Child.vue";
 export default {
-    data(){
-        return{
-            n:0
-        }
-    }
-}
+  components: { Child },
+  data() {
+    return {
+      n: 10000,
+    };
+  },
+};
 </script>
 
 <style>
-
 </style>
