@@ -1,7 +1,7 @@
 <template>
     <div>
     {{money}}
-    <button @click='$emit("upData:money",money-100)' ><span>花钱啊</span></button>
+    <button @click='$emit("update:money",money-100)' ><span>花钱啊</span></button>
     </div>
 </template>
 
