@@ -8177,9 +8177,34 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
+//
 
 exports.default = {
-    props: ['money']
+    methods: {
+        hi: function hi() {
+            console.log('w shi sha bi');
+        }
+    },
+
+    props: ['money'],
+    directives: {
+        "xx": {
+            inserted: function inserted(el) {
+                el.addEventListener('click', function () {
+                    console.log("xxx");
+                });
+            }
+        },
+        "on2": {
+            inserted: function inserted(el, info) {
+                el.addEventListener(info.arg, info.value);
+            },
+            unbind: function unbind(el, info) {
+                el.removeEventListener(info.arg, info.value);
+            }
+        }
+    }
 };
         var $9c9fa6 = exports.default || module.exports;
       
@@ -8205,6 +8230,26 @@ exports.default = {
         }
       },
       [_c("span", [_vm._v("花钱啊")])]
+    ),
+    _vm._v(" "),
+    _c("div", { directives: [{ name: "xx", rawName: "v-xx" }] }, [
+      _vm._v("xxx")
+    ]),
+    _vm._v(" "),
+    _c(
+      "button",
+      {
+        directives: [
+          {
+            name: "on2",
+            rawName: "v-on2:click",
+            value: _vm.hi,
+            expression: "hi",
+            arg: "click"
+          }
+        ]
+      },
+      [_vm._v("on2")]
     )
   ])
 }
@@ -8215,7 +8260,7 @@ render._withStripped = true
             render: render,
             staticRenderFns: staticRenderFns,
             _compiled: true,
-            _scopeId: null,
+            _scopeId: "data-v-9c9fa6",
             functional: undefined
           };
         })());
@@ -8241,27 +8286,672 @@ render._withStripped = true
       
       }
     })();
-},{"_css_loader":"C:\\Users\\FZH\\AppData\\Local\\Yarn\\Data\\global\\node_modules\\parcel\\src\\builtins\\css-loader.js","vue-hot-reload-api":"..\\node_modules\\vue-hot-reload-api\\dist\\index.js","vue":"..\\node_modules\\vue\\dist\\vue.runtime.esm.js"}],"app.vue":[function(require,module,exports) {
+},{"_css_loader":"C:\\Users\\FZH\\AppData\\Local\\Yarn\\Data\\global\\node_modules\\parcel\\src\\builtins\\css-loader.js","vue-hot-reload-api":"..\\node_modules\\vue-hot-reload-api\\dist\\index.js","vue":"..\\node_modules\\vue\\dist\\vue.runtime.esm.js"}],"mix\\mix.js":[function(require,module,exports) {
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var log = {
+  data: function data() {
+    return {
+      name: undefined,
+      time: undefined
+    };
+  },
+  created: function created() {
+    if (!this.name) {
+      throw new Error('need name');
+    }
+    this.time = new Date();
+    console.log(this.time);
+    console.log(this.name + '\u51FA\u751F\u4E86');
+  },
+  beforeDestroy: function beforeDestroy() {
+    var newTime = new Date();
+    console.log(newTime);
+    console.log(this.name + '\u6B7B\u4EA1\u4E86 \u5B58\u6D3B\u4E86' + (newTime - this.time) + 'ms');
+  }
+};
+
+exports.default = log;
+},{}],"child\\mix1.vue":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _Child = require("./Child.vue");
+var _mix = require("../mix/mix.js");
 
-var _Child2 = _interopRequireDefault(_Child);
+var _mix2 = _interopRequireDefault(_mix);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = {
-  components: { Child: _Child2.default },
   data: function data() {
     return {
-      n: 10000
+      name: "child1"
     };
-  }
+  },
+
+  mixins: [_mix2.default]
 }; //
+//
+//
+//
+//
+        var $a0590e = exports.default || module.exports;
+      
+      if (typeof $a0590e === 'function') {
+        $a0590e = $a0590e.options;
+      }
+    
+        /* template */
+        Object.assign($a0590e, (function () {
+          var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [_vm._v("child1")])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+          return {
+            render: render,
+            staticRenderFns: staticRenderFns,
+            _compiled: true,
+            _scopeId: null,
+            functional: undefined
+          };
+        })());
+      
+    /* hot reload */
+    (function () {
+      if (module.hot) {
+        var api = require('vue-hot-reload-api');
+        api.install(require('vue'));
+        if (api.compatible) {
+          module.hot.accept();
+          if (!module.hot.data) {
+            api.createRecord('$a0590e', $a0590e);
+          } else {
+            api.reload('$a0590e', $a0590e);
+          }
+        }
+
+        
+      }
+    })();
+},{"../mix/mix.js":"mix\\mix.js","vue-hot-reload-api":"..\\node_modules\\vue-hot-reload-api\\dist\\index.js","vue":"..\\node_modules\\vue\\dist\\vue.runtime.esm.js"}],"child\\mix2.vue":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _mix = require("../mix/mix.js");
+
+var _mix2 = _interopRequireDefault(_mix);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+  data: function data() {
+    return {
+      name: "child2"
+    };
+  },
+
+  mixins: [_mix2.default]
+}; //
+//
+//
+//
+//
+        var $9dde88 = exports.default || module.exports;
+      
+      if (typeof $9dde88 === 'function') {
+        $9dde88 = $9dde88.options;
+      }
+    
+        /* template */
+        Object.assign($9dde88, (function () {
+          var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [_vm._v("child2")])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+          return {
+            render: render,
+            staticRenderFns: staticRenderFns,
+            _compiled: true,
+            _scopeId: null,
+            functional: undefined
+          };
+        })());
+      
+    /* hot reload */
+    (function () {
+      if (module.hot) {
+        var api = require('vue-hot-reload-api');
+        api.install(require('vue'));
+        if (api.compatible) {
+          module.hot.accept();
+          if (!module.hot.data) {
+            api.createRecord('$9dde88', $9dde88);
+          } else {
+            api.reload('$9dde88', $9dde88);
+          }
+        }
+
+        
+      }
+    })();
+},{"../mix/mix.js":"mix\\mix.js","vue-hot-reload-api":"..\\node_modules\\vue-hot-reload-api\\dist\\index.js","vue":"..\\node_modules\\vue\\dist\\vue.runtime.esm.js"}],"child\\mix3.vue":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _mix = require("../mix/mix.js");
+
+var _mix2 = _interopRequireDefault(_mix);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+  data: function data() {
+    return {
+      name: "child3"
+    };
+  },
+
+  mixins: [_mix2.default]
+}; //
+//
+//
+//
+//
+        var $315c4f = exports.default || module.exports;
+      
+      if (typeof $315c4f === 'function') {
+        $315c4f = $315c4f.options;
+      }
+    
+        /* template */
+        Object.assign($315c4f, (function () {
+          var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [_vm._v("child1")])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+          return {
+            render: render,
+            staticRenderFns: staticRenderFns,
+            _compiled: true,
+            _scopeId: null,
+            functional: undefined
+          };
+        })());
+      
+    /* hot reload */
+    (function () {
+      if (module.hot) {
+        var api = require('vue-hot-reload-api');
+        api.install(require('vue'));
+        if (api.compatible) {
+          module.hot.accept();
+          if (!module.hot.data) {
+            api.createRecord('$315c4f', $315c4f);
+          } else {
+            api.reload('$315c4f', $315c4f);
+          }
+        }
+
+        
+      }
+    })();
+},{"../mix/mix.js":"mix\\mix.js","vue-hot-reload-api":"..\\node_modules\\vue-hot-reload-api\\dist\\index.js","vue":"..\\node_modules\\vue\\dist\\vue.runtime.esm.js"}],"extend\\Myvue.js":[function(require,module,exports) {
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var MyVue = Vue.extend({
+  data: function data() {
+    return {
+      name: undefined,
+      time: undefined
+    };
+  },
+  created: function created() {
+    if (!this.name) {
+      throw new Error('need name');
+    }
+    this.time = new Date();
+    console.log(this.time);
+    console.log(this.name + '\u51FA\u751F\u4E86');
+  },
+  beforeDestroy: function beforeDestroy() {
+    var newTime = new Date();
+    console.log(newTime);
+    console.log(this.name + '\u6B7B\u4EA1\u4E86 \u5B58\u6D3B\u4E86' + (newTime - this.time) + 'ms');
+  }
+});
+
+exports.default = MyVue;
+},{}],"child\\extend4.vue":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _Myvue = require("../extend/Myvue.js");
+
+var _Myvue2 = _interopRequireDefault(_Myvue);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+  data: function data() {
+    return {
+      name: "extend4"
+    };
+  },
+
+  extends: _Myvue2.default
+}; //
+//
+//
+//
+//
+        var $4dd409 = exports.default || module.exports;
+      
+      if (typeof $4dd409 === 'function') {
+        $4dd409 = $4dd409.options;
+      }
+    
+        /* template */
+        Object.assign($4dd409, (function () {
+          var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [_vm._v("extend4")])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+          return {
+            render: render,
+            staticRenderFns: staticRenderFns,
+            _compiled: true,
+            _scopeId: null,
+            functional: undefined
+          };
+        })());
+      
+    /* hot reload */
+    (function () {
+      if (module.hot) {
+        var api = require('vue-hot-reload-api');
+        api.install(require('vue'));
+        if (api.compatible) {
+          module.hot.accept();
+          if (!module.hot.data) {
+            api.createRecord('$4dd409', $4dd409);
+          } else {
+            api.reload('$4dd409', $4dd409);
+          }
+        }
+
+        
+      }
+    })();
+},{"../extend/Myvue.js":"extend\\Myvue.js","vue-hot-reload-api":"..\\node_modules\\vue-hot-reload-api\\dist\\index.js","vue":"..\\node_modules\\vue\\dist\\vue.runtime.esm.js"}],"child\\extend5.vue":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _Myvue = require("../extend/Myvue.js");
+
+var _Myvue2 = _interopRequireDefault(_Myvue);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+  data: function data() {
+    return {
+      name: "extend5"
+    };
+  },
+
+  extends: _Myvue2.default
+}; //
+//
+//
+//
+//
+        var $020eec = exports.default || module.exports;
+      
+      if (typeof $020eec === 'function') {
+        $020eec = $020eec.options;
+      }
+    
+        /* template */
+        Object.assign($020eec, (function () {
+          var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [_vm._v("extend5")])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+          return {
+            render: render,
+            staticRenderFns: staticRenderFns,
+            _compiled: true,
+            _scopeId: null,
+            functional: undefined
+          };
+        })());
+      
+    /* hot reload */
+    (function () {
+      if (module.hot) {
+        var api = require('vue-hot-reload-api');
+        api.install(require('vue'));
+        if (api.compatible) {
+          module.hot.accept();
+          if (!module.hot.data) {
+            api.createRecord('$020eec', $020eec);
+          } else {
+            api.reload('$020eec', $020eec);
+          }
+        }
+
+        
+      }
+    })();
+},{"../extend/Myvue.js":"extend\\Myvue.js","vue-hot-reload-api":"..\\node_modules\\vue-hot-reload-api\\dist\\index.js","vue":"..\\node_modules\\vue\\dist\\vue.runtime.esm.js"}],"child\\changethemecolor.vue":[function(require,module,exports) {
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+exports.default = {
+    inject: ['themeName', 'changeColor', 'changesize'],
+    methods: {
+        x: function x() {
+            this.changeColor();
+        }
+    }
+};
+        var $eebe77 = exports.default || module.exports;
+      
+      if (typeof $eebe77 === 'function') {
+        $eebe77 = $eebe77.options;
+      }
+    
+        /* template */
+        Object.assign($eebe77, (function () {
+          var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("button", { on: { click: _vm.x } }, [
+      _vm._v("当前颜色：" + _vm._s(_vm.themeName))
+    ]),
+    _vm._v(" "),
+    _c(
+      "button",
+      {
+        on: {
+          click: function($event) {
+            return _vm.changesize("big")
+          }
+        }
+      },
+      [_vm._v("big")]
+    ),
+    _vm._v(" "),
+    _c(
+      "button",
+      {
+        on: {
+          click: function($event) {
+            return _vm.changesize("small")
+          }
+        }
+      },
+      [_vm._v("small")]
+    ),
+    _vm._v(" "),
+    _c(
+      "button",
+      {
+        on: {
+          click: function($event) {
+            return _vm.changesize("normal")
+          }
+        }
+      },
+      [_vm._v("normal")]
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+          return {
+            render: render,
+            staticRenderFns: staticRenderFns,
+            _compiled: true,
+            _scopeId: "data-v-eebe77",
+            functional: undefined
+          };
+        })());
+      
+    /* hot reload */
+    (function () {
+      if (module.hot) {
+        var api = require('vue-hot-reload-api');
+        api.install(require('vue'));
+        if (api.compatible) {
+          module.hot.accept();
+          if (!module.hot.data) {
+            api.createRecord('$eebe77', $eebe77);
+          } else {
+            api.reload('$eebe77', $eebe77);
+          }
+        }
+
+        
+        var reloadCSS = require('_css_loader');
+        module.hot.dispose(reloadCSS);
+        module.hot.accept(reloadCSS);
+      
+      }
+    })();
+},{"_css_loader":"C:\\Users\\FZH\\AppData\\Local\\Yarn\\Data\\global\\node_modules\\parcel\\src\\builtins\\css-loader.js","vue-hot-reload-api":"..\\node_modules\\vue-hot-reload-api\\dist\\index.js","vue":"..\\node_modules\\vue\\dist\\vue.runtime.esm.js"}],"child\\change.vue":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _changethemecolor = require("./changethemecolor.vue");
+
+var _changethemecolor2 = _interopRequireDefault(_changethemecolor);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+  components: { ChangeThemeColor: _changethemecolor2.default }
+}; //
+//
+//
+//
+//
+//
+        var $3c87e0 = exports.default || module.exports;
+      
+      if (typeof $3c87e0 === 'function') {
+        $3c87e0 = $3c87e0.options;
+      }
+    
+        /* template */
+        Object.assign($3c87e0, (function () {
+          var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [_vm._v("change\n"), _c("change-theme-color")], 1)
+}
+var staticRenderFns = []
+render._withStripped = true
+
+          return {
+            render: render,
+            staticRenderFns: staticRenderFns,
+            _compiled: true,
+            _scopeId: null,
+            functional: undefined
+          };
+        })());
+      
+    /* hot reload */
+    (function () {
+      if (module.hot) {
+        var api = require('vue-hot-reload-api');
+        api.install(require('vue'));
+        if (api.compatible) {
+          module.hot.accept();
+          if (!module.hot.data) {
+            api.createRecord('$3c87e0', $3c87e0);
+          } else {
+            api.reload('$3c87e0', $3c87e0);
+          }
+        }
+
+        
+      }
+    })();
+},{"./changethemecolor.vue":"child\\changethemecolor.vue","vue-hot-reload-api":"..\\node_modules\\vue-hot-reload-api\\dist\\index.js","vue":"..\\node_modules\\vue\\dist\\vue.runtime.esm.js"}],"app.vue":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _Child = require("./Child.vue");
+
+var _Child2 = _interopRequireDefault(_Child);
+
+var _mix = require("../src/child/mix1.vue");
+
+var _mix2 = _interopRequireDefault(_mix);
+
+var _mix3 = require("../src/child/mix2.vue");
+
+var _mix4 = _interopRequireDefault(_mix3);
+
+var _mix5 = require("../src/child/mix3.vue");
+
+var _mix6 = _interopRequireDefault(_mix5);
+
+var _extend = require("../src/child/extend4.vue");
+
+var _extend2 = _interopRequireDefault(_extend);
+
+var _extend3 = require("../src/child/extend5.vue");
+
+var _extend4 = _interopRequireDefault(_extend3);
+
+var _change = require("../src/child/change.vue");
+
+var _change2 = _interopRequireDefault(_change);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+    components: { Child: _Child2.default, Mix1: _mix2.default, Mix2: _mix4.default, Mix3: _mix6.default, Extend4: _extend2.default, Extend5: _extend4.default, Change: _change2.default },
+    data: function data() {
+        return {
+            n: 10000,
+            visible1: true,
+            visible2: true,
+            visible3: true,
+            visible4: true,
+            visible5: true,
+            themeName: "blue",
+            themeSize: 'normal'
+        };
+    },
+    provide: function provide() {
+        return {
+            themeName: this.themeName,
+            changeColor: this.changeColor,
+            changesize: this.changesize
+        };
+    },
+
+    methods: {
+        changeColor: function changeColor() {
+            if (this.themeName === 'blue') {
+                this.themeName = 'red';
+            } else {
+                this.themeName = 'blue';
+            }
+        },
+        changesize: function changesize(name) {
+            if (['normal', 'big', 'small'].indexOf(name) >= 0) {
+                this.themeSize = name;
+            }
+        }
+    }
+}; //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -8285,6 +8975,7 @@ exports.default = {
   var _c = _vm._self._c || _h
   return _c(
     "div",
+    { class: "app theme-" + _vm.themeName + " theme-" + _vm.themeSize },
     [
       _vm._v("\n  App:vue " + _vm._s(_vm.n) + "\n  "),
       _c("hr"),
@@ -8296,7 +8987,85 @@ exports.default = {
             _vm.n = $event
           }
         }
-      })
+      }),
+      _vm._v(" "),
+      _c("span", [_vm._v(" wshi shabi")]),
+      _vm._v(" "),
+      _c("hr"),
+      _vm._v(" "),
+      _c("Change"),
+      _vm._v(" "),
+      _c("hr"),
+      _vm._v(" "),
+      _vm.visible1 === true ? _c("Mix1") : _vm._e(),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          on: {
+            click: function($event) {
+              _vm.visible1 = false
+            }
+          }
+        },
+        [_vm._v("X1")]
+      ),
+      _vm._v(" "),
+      _vm.visible2 === true ? _c("Mix2") : _vm._e(),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          on: {
+            click: function($event) {
+              _vm.visible2 = false
+            }
+          }
+        },
+        [_vm._v("X2")]
+      ),
+      _vm._v(" "),
+      _vm.visible3 === true ? _c("Mix3") : _vm._e(),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          on: {
+            click: function($event) {
+              _vm.visible3 = false
+            }
+          }
+        },
+        [_vm._v("X3")]
+      ),
+      _vm._v(" "),
+      _vm.visible4 === true ? _c("Extend4") : _vm._e(),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          on: {
+            click: function($event) {
+              _vm.visible4 = false
+            }
+          }
+        },
+        [_vm._v("X4")]
+      ),
+      _vm._v(" "),
+      _vm.visible5 === true ? _c("Extend5") : _vm._e(),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          on: {
+            click: function($event) {
+              _vm.visible5 = false
+            }
+          }
+        },
+        [_vm._v("X5")]
+      )
     ],
     1
   )
@@ -8308,7 +9077,7 @@ render._withStripped = true
             render: render,
             staticRenderFns: staticRenderFns,
             _compiled: true,
-            _scopeId: null,
+            _scopeId: "data-v-fbcfb5",
             functional: undefined
           };
         })());
@@ -8334,7 +9103,7 @@ render._withStripped = true
       
       }
     })();
-},{"./Child.vue":"Child.vue","_css_loader":"C:\\Users\\FZH\\AppData\\Local\\Yarn\\Data\\global\\node_modules\\parcel\\src\\builtins\\css-loader.js","vue-hot-reload-api":"..\\node_modules\\vue-hot-reload-api\\dist\\index.js","vue":"..\\node_modules\\vue\\dist\\vue.runtime.esm.js"}],"main.js":[function(require,module,exports) {
+},{"./Child.vue":"Child.vue","../src/child/mix1.vue":"child\\mix1.vue","../src/child/mix2.vue":"child\\mix2.vue","../src/child/mix3.vue":"child\\mix3.vue","../src/child/extend4.vue":"child\\extend4.vue","../src/child/extend5.vue":"child\\extend5.vue","../src/child/change.vue":"child\\change.vue","_css_loader":"C:\\Users\\FZH\\AppData\\Local\\Yarn\\Data\\global\\node_modules\\parcel\\src\\builtins\\css-loader.js","vue-hot-reload-api":"..\\node_modules\\vue-hot-reload-api\\dist\\index.js","vue":"..\\node_modules\\vue\\dist\\vue.runtime.esm.js"}],"main.js":[function(require,module,exports) {
 "use strict";
 
 var _app = require("./app.vue");
@@ -8349,18 +9118,16 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var vm = new Vue({
    el: '#app',
-   data: {
-      a: 12
-   },
    components: { Child: _Child2.default },
-   // template:`
-   // <div>
-   // {{a}}
-   // <div> <Child/></div>
-   // </div>
-   // `,
    render: function render(h) {
       return h(_app2.default);
+   }
+});
+Vue.directive('x', {
+   inserted: function inserted(el) {
+      el.addEventListener('click', function () {
+         console.log('x');
+      });
    }
 });
 },{"./app.vue":"app.vue","./Child.vue":"Child.vue"}],"C:\\Users\\FZH\\AppData\\Local\\Yarn\\Data\\global\\node_modules\\parcel\\src\\builtins\\hmr-runtime.js":[function(require,module,exports) {
@@ -8392,7 +9159,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '6819' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '5240' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 

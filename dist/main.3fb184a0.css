@@ -1,0 +1,24 @@
+.app[data-v-fbcfb5] {
+  border: 1px solid red;
+}
+.app.theme-blue button[data-v-fbcfb5] {
+  background: blue;
+}
+.app.theme-blue[data-v-fbcfb5] {
+  color: blue;
+}
+.app.theme-red button[data-v-fbcfb5] {
+  background: red;
+}
+.app.theme-red[data-v-fbcfb5] {
+  color: red;
+}
+.app.theme-big[data-v-fbcfb5]{
+    font-size: 30px;
+}
+.app.theme-small[data-v-fbcfb5]{
+    font-size: 8px;
+}
+.app.theme-normal[data-v-fbcfb5]{
+    font-size: 16px;
+}
